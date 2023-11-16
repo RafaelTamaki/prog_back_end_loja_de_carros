@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Montadora, Itens, Carro, Nome
 
-# Register your models here.
+
+admin.site.register(Montadora)
+admin.site.register(Itens)
+admin.site.register(Carro)
+admin.site.register(Nome)

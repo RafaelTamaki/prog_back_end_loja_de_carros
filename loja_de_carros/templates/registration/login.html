@@ -1,0 +1,25 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'login.css' %}">
+
+<div class="card-body">
+    <h2>Car Store</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username}}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.password.id_for_label }}">Password:</label>
+            {{ form.password}}
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <a href="/cadastro" class="btn btn-primary">Cadastrar</a>
+        </div>
+    </form>
+</div>
+
