@@ -36,26 +36,26 @@ def cadastro_view(request):
 def login_view(request):
     return render(request, 'registration/login.html')
 
-def user_login(request):
+def login_form_view(request):
     user = None
-    if request.method == 'POST':
+    if request.method == "POST":
         form = LoginForm(request.POST)
 
         if form.is_valid():
-            username = request.POST['username']
-            password = request.POST['password']
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
             user = authenticate(request, username=username, password=password)
-        
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Logado com sucesso")
-            return redirect('/home')
-        else:
-            messages.error(request, "Usuário ou Senha Inválidos")
+
+            if user is not None:
+                login(request, user)
+                messages.success(request, "Logado com Sucesso")
+                return redirect('/')
+            else:
+                messages.error(request, "Usuário ou Senha Inválidos")
 
     else:
         form = LoginForm()
 
-    context = {'form': form}        
+    context = {'form': form}
     return render(request, 'login.html', context)
-    
+
